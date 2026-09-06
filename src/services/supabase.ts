@@ -164,7 +164,7 @@ export async function submitScoreToSupabase(scoreData: {
     // Check if an entry for this callsign/nickname already exists
     const { data: existingList } = await supabase
       .from('leaderboard')
-      .select('id')
+      .select('id, score')
       .or(`callsign.ilike.${callsignUpper},nickname.ilike.${callsignUpper}`)
       .limit(1);
 
