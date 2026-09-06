@@ -94,7 +94,16 @@ export const Results: React.FC<ResultsProps> = ({
     }
 
     // Save to backend database or Supabase (prevent duplicate submission)
-    const timeSpent = Math.max(1, 300 - gameState.timeRemaining);
+    const getMaxTime = (diff: string) => {
+      if (diff === 'easy') return 420;
+      if (diff === 'nightmare') return 180;
+      return 300;
+    };
+
+    const sumTimeSpent = (gameState.results || []).reduce((acc, r) => acc + (r.timeSpentSeconds || 0), 0);
+    const maxTime = getMaxTime(gameState.difficulty);
+    const timeSpent = sumTimeSpent > 0 ? sumTimeSpent : Math.max(1, maxTime - gameState.timeRemaining);
+
     const mins = Math.floor(timeSpent / 60);
     const secs = timeSpent % 60;
     const timeFormatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
@@ -124,7 +133,16 @@ export const Results: React.FC<ResultsProps> = ({
   }, []);
 
   const formatTotalTime = () => {
-    const timeSpent = Math.max(1, 300 - gameState.timeRemaining);
+    const getMaxTime = (diff: string) => {
+      if (diff === 'easy') return 420;
+      if (diff === 'nightmare') return 180;
+      return 300;
+    };
+
+    const sumTimeSpent = (gameState.results || []).reduce((acc, r) => acc + (r.timeSpentSeconds || 0), 0);
+    const maxTime = getMaxTime(gameState.difficulty);
+    const timeSpent = sumTimeSpent > 0 ? sumTimeSpent : Math.max(1, maxTime - gameState.timeRemaining);
+
     const mins = Math.floor(timeSpent / 60);
     const secs = timeSpent % 60;
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')} นาที`;
