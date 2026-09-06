@@ -11,11 +11,15 @@ class SocketService {
 
   public connect(): Socket {
     if (!this.socket) {
+      // If deployed on Vercel (static host), Socket.IO server is not available
+      const isVercel = typeof window !== 'undefined' && window.location.hostname.includes('vercel.app');
+
       this.socket = io(this.serverUrl, {
-        reconnection: true,
-        reconnectionAttempts: 10,
-        reconnectionDelay: 1000,
+        reconnection: !isVercel,
+        reconnectionAttempts: isVercel ? 0 : 3,
+        reconnectionDelay: 2000,
         transports: ['websocket', 'polling'],
+        autoConnect: !isVercel,
       });
 
       this.socket.on('connect', () => {
@@ -24,6 +28,10 @@ class SocketService {
 
       this.socket.on('disconnect', () => {
         console.log('🔴 [SOC Network] Disconnected from Central Server');
+      });
+
+      this.socket.on('connect_error', () => {
+        // Silently handle socket connection error on static hosting platforms
       });
     }
     return this.socket;

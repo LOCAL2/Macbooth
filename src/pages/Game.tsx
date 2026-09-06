@@ -194,15 +194,17 @@ export const Game: React.FC<GameProps> = ({ nickname, difficulty, onFinish, onQu
       onErrorShake(); // Trigger intense screen shake & red damage flash!
     }
 
-    // Record mission metric to backend
-    fetch('/api/game/mission-outcome', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        missionIndex: currentMission.id,
-        isCorrect,
-      }),
-    }).catch(() => {});
+    // Record mission metric to backend (only if local server is active, skip on Vercel)
+    if (typeof window !== 'undefined' && !window.location.hostname.includes('vercel.app')) {
+      fetch('/api/game/mission-outcome', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          missionIndex: currentMission.id,
+          isCorrect,
+        }),
+      }).catch(() => {});
+    }
 
     setGameState((prev) => {
       const newThreat = Math.max(5, Math.min(100, prev.threatLevel + choice.threatImpact));

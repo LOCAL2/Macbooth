@@ -94,9 +94,18 @@ export const Admin: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     if (!window.confirm('คุณแน่ใจหรือไม่ว่าต้องการล้างคะแนนทั้งหมดในตารางเพื่อเริ่มวันใหม่?')) return;
 
     // Clear Supabase if connected
-    await clearSupabaseLeaderboard();
+    const supabaseCleared = await clearSupabaseLeaderboard();
 
-    // Clear Local DB
+    const isVercel = typeof window !== 'undefined' && window.location.hostname.includes('vercel.app');
+    if (isVercel) {
+      soundEngine.playSuccess();
+      setLeaderboard([]);
+      fetchAdminData();
+      setSaveSuccessMsg('รีเซ็ตตารางคะแนนบน Supabase เรียบร้อยแล้ว!');
+      return;
+    }
+
+    // Clear Local DB if on local server
     fetch('/api/admin/reset-leaderboard', {
       method: 'POST',
       headers: {
