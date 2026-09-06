@@ -1,0 +1,95 @@
+{
+  "leaderboard": [],
+  "sessions": [],
+  "settings": {
+    "timeEasy": 420,
+    "timeNormal": 300,
+    "timeNightmare": 180,
+    "soundDefault": true,
+    "demoMode": false,
+    "scoreMultiplier": 1
+  },
+  "metrics": {
+    "totalStarts": 0,
+    "totalCompletions": 0,
+    "totalCompromised": 0,
+    "missionStats": {
+      "1": {
+        "correct": 1,
+        "wrong": 0
+      },
+      "2": {
+        "correct": 1,
+        "wrong": 1
+      },
+      "3": {
+        "correct": 0,
+        "wrong": 2
+      },
+      "4": {
+        "correct": 2,
+        "wrong": 0
+      },
+      "5": {
+        "correct": 4,
+        "wrong": 0
+      },
+      "6": {
+        "correct": 1,
+        "wrong": 0
+      },
+      "101": {
+        "correct": 1,
+        "wrong": 1
+      },
+      "102": {
+        "correct": 3,
+        "wrong": 1
+      },
+      "103": {
+        "correct": 1,
+        "wrong": 0
+      },
+      "104": {
+        "correct": 1,
+        "wrong": 4
+      },
+      "105": {
+        "correct": 1,
+        "wrong": 0
+      },
+      "201": {
+        "correct": 2,
+        "wrong": 0
+      },
+      "202": {
+        "correct": 1,
+        "wrong": 0
+      },
+      "203": {
+        "correct": 2,
+        "wrong": 1
+      },
+      "205": {
+        "correct": 2,
+        "wrong": 0
+      },
+      "206": {
+        "correct": 1,
+        "wrong": 1
+      },
+      "301": {
+        "correct": 1,
+        "wrong": 2
+      },
+      "302": {
+        "correct": 0,
+        "wrong": 3
+      },
+      "306": {
+        "correct": 3,
+        "wrong": 1
+      }
+    }
+  }
+}

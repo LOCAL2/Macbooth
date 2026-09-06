@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --apple-bg: #06080d;
+    --apple-surface: #0e121a;
+    --apple-border: #202738;
+    --apple-blue: #0A84FF;
+    --apple-green: #30D158;
+    --apple-amber: #FF9F0A;
+    --apple-red: #FF453A;
+  }
+
+  body {
+    background-color: #06080d;
+    color: #f5f5f7;
+    font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090c13;
+}
+::-webkit-scrollbar-thumb {
+  background: #232d3f;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0A84FF;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: rgba(14, 18, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.glass-panel-elevated {
+  background: rgba(22, 28, 40, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
+}
+
+.glass-alert {
+  background: rgba(40, 15, 18, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 69, 58, 0.35);
+  box-shadow: 0 0 35px -5px rgba(255, 69, 58, 0.4);
+}
+
+/* Cyber Grid Background */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Scanline Effect */
+.scanline-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.02),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.02)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Intense Error Screen Shake on Wrong Answer */
+.error-shake {
+  animation: intenseErrorShake 0.65s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes intenseErrorShake {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  10% { transform: translate3d(-12px, 5px, 0) rotate(-1.2deg); }
+  20% { transform: translate3d(14px, -7px, 0) rotate(1.5deg); }
+  30% { transform: translate3d(-16px, 9px, 0) rotate(-1.8deg); }
+  40% { transform: translate3d(12px, -5px, 0) rotate(1.2deg); }
+  50% { transform: translate3d(-9px, 6px, 0) rotate(-0.8deg); }
+  65% { transform: translate3d(7px, -3px, 0) rotate(0.6deg); }
+  80% { transform: translate3d(-4px, 2px, 0) rotate(0deg); }
+  90% { transform: translate3d(2px, -1px, 0) rotate(0deg); }
+}
+
+/* Error Red Damage Flash Screen */
+.error-red-flash {
+  animation: redDamageFlash 0.65s ease-out forwards;
+}
+
+@keyframes redDamageFlash {
+  0% { background-color: rgba(255, 69, 58, 0.45); }
+  40% { background-color: rgba(255, 69, 58, 0.2); }
+  100% { background-color: transparent; }
+}
+
+/* Ambient Screen Shake (for critical threat) */
+.shake-screen {
+  animation: screenShake 0.4s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+
+@keyframes screenShake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-3px, 2px); }
+  40% { transform: translate(3px, -2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
+}
+
+/* Glowing text */
+.glow-text-blue {
+  text-shadow: 0 0 12px rgba(10, 132, 255, 0.6);
+}
+
+.glow-text-green {
+  text-shadow: 0 0 12px rgba(48, 209, 88, 0.6);
+}
+
+.glow-text-red {
+  text-shadow: 0 0 14px rgba(255, 69, 58, 0.7);
+}
+
+.glow-text-amber {
+  text-shadow: 0 0 12px rgba(255, 159, 10, 0.6);
+}
+
+/* macOS Traffic lights */
+.traffic-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+.traffic-btn-close {
+  background-color: #ff5f56;
+  border: 1px solid #e0443e;
+}
+.traffic-btn-min {
+  background-color: #ffbd2e;
+  border: 1px solid #dea123;
+}
+.traffic-btn-max {
+  background-color: #27c93f;
+  border: 1px solid #1aab29;
+}
